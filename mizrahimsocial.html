@@ -1045,57 +1045,6 @@ function backToMainMenu() {
         document.getElementById('mobileMainLevel').classList.add('active');
     }
 
-  document.addEventListener("DOMContentLoaded", function() {
-    const wrappers = document.querySelectorAll('.reference-name-wrapper');
-
-    wrappers.forEach(wrapper => {
-        const note = wrapper.querySelector('.reference-side-note');
-        let typingInterval;
-
-        // 1. שמירת הטקסט המקורי בצד כדי לא לאבד אותו
-        if (note) {
-            note.dataset.fullText = note.textContent.trim();
-        }
-
-        wrapper.addEventListener('click', function(e) {
-            // במובייל בלבד - אם לוחצים, בטל את ההתנהגות הרגילה
-            if (window.innerWidth <= 1200) {
-                 e.preventDefault();
-            }
-            
-            // אם ההערה כבר פתוחה - נסגור אותה מיד
-            if (wrapper.classList.contains('active')) {
-                clearInterval(typingInterval); // הפסקת ההקלדה
-                wrapper.classList.remove('active');
-                note.textContent = note.dataset.fullText; // החזרת הטקסט המלא למקרה הצורך
-            } 
-            // אם ההערה סגורה - נפתח אותה ונתחיל להקליד
-            else {
-                 // (אופציונלי) סגירת הערות אחרות פתוחות
-                 document.querySelectorAll('.reference-name-wrapper.active').forEach(activeMsg => {
-                     activeMsg.click();
-                 });
-
-                 wrapper.classList.add('active');
-                 note.textContent = ''; // ריקון הטקסט
-                 
-                 let charIndex = 0;
-                 const textToType = note.dataset.fullText;
-
-                 // התחלת טיימר שמקליד אות כל 50 מילישניות
-                 typingInterval = setInterval(() => {
-                     if (charIndex < textToType.length) {
-                         note.textContent += textToType.charAt(charIndex);
-                         charIndex++;
-                     } else {
-                         clearInterval(typingInterval); // סיום כשהגענו לסוף הטקסט
-                     }
-                 }, 30); // <-- כאן משנים את מהירות ההקלדה (מספר נמוך = מהר יותר)
-            }
-        });
-    });
-});
-
 // קוד לטיפול בתפריט במכשירי טאץ' (אייפד/נייד)
   document.addEventListener("DOMContentLoaded", function() {
       const arrow = document.querySelector('.arrow');
@@ -1117,7 +1066,6 @@ function backToMainMenu() {
           });
       }
   });
-
 </script>
 </body>
 </html>
