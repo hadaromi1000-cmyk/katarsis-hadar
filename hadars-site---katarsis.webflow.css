@@ -1,0 +1,594 @@
+@font-face {
+    font-family:thebasics-regular;
+    src: url(fonts/TheBasics-Regular.woff2) format('woff2');
+}
+
+@font-face {
+    font-family:thebasics-regularitalic;
+    src: url(fonts/TheBasics-RegularItalic.woff2) format('woff2');
+}
+
+@font-face {
+    font-family:thebasics-black;
+    src: url(fonts/TheBasics-Black.woff2) format('woff2');
+}
+
+/* --- הגדרות כלליות --- */
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 44px;
+  font-family: noam-text, serif;
+  line-height: 97%;
+  font-weight: 400;
+  color: #231F20;
+}
+
+p, li, blockquote, .article-name-wrapper-name {
+  font-family: noam-text, sans-serif;
+  font-size: 19px;
+  line-height: 140%;
+  letter-spacing: 2%;
+  font-weight: 400;
+  color: #231F20;
+}
+
+p {
+  text-indent: 50px;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;  
+  position: relative; /* חשוב למיקום הערות השוליים */
+}
+
+p.first-paragraph {
+    text-indent: 0;
+    margin-top: 20px;
+}
+
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+  margin-right: -40px;
+  position: relative;
+}
+
+li {
+  line-height: 140%;
+  position: relative;
+}
+
+blockquote {
+  text-indent: 0px;
+  margin-bottom: 0;
+  margin-right: -91px;
+  padding: 0;
+  margin-top: 0;
+  position: relative;
+}
+
+h2 {
+  font-family: thebasics-black;
+  margin-top: 25px;
+  color:#231F20;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: -12px;
+
+}
+
+
+/* ======================================================== */
+/* חלק 1: הגדרות הערות שוליים ורפרנסים (מחשב)             */
+/* ======================================================== */
+
+/* 1. כפתור הרפרנס (השם בתוך הטקסט) */
+.reference-name {
+  font-family: 'thebasics-regular', sans-serif;
+  font-style: normal;
+  vertical-align: middle;
+  color: #AA8152;
+  font-feature-settings: "case" 1, "ss01" 1, "liga" 1;
+  -webkit-font-feature-settings: "case" 1, "ss01" 1, "liga" 1;
+  font-variant-ligatures: contextual;
+  font-size: 15.5px;
+  display: inline;
+  position: static;
+  cursor: pointer;
+  border: 2px solid #AA8152;
+  border-radius: 13px;
+  padding: 2px 5px;
+  transition: all 0.3s ease;
+}
+
+.reference-name:hover {
+  background-color: #AA8152;
+  color: #ffffff;
+}
+
+/* 2. העוטף של הרפרנס */
+.reference-name-wrapper {
+  /* static חשוב מאוד! גורם להערה בפנים להתייחס לפסקה הראשית ולא למילה */
+  position: static; 
+}
+
+/* 3. הערת שוליים רגילה (Side Note) */
+.side-note {
+  position: absolute;
+  top: 0; 
+  z-index: -100;
+  right: -67.5%; 
+  width: 25%;
+  font-family: thebasics-regular;
+  font-size: 14px;
+  line-height: 128%;
+  color: #AA8152;
+  text-align: right;
+  text-indent: 0;
+  font-feature-settings: "case" 1, "ss01" 1, "liga" 1;
+  -webkit-font-feature-settings: "case" 1, "ss01" 1, "liga" 1;
+  font-variant-ligatures: contextual;
+  transition: opacity 0.3s ease; /* לאנימציית פוקוס */
+}
+
+/* 4. הערת רפרנס (Reference Side Note) - מעוצבת בדיוק כמו Side Note! */
+.reference-side-note {
+  /* --- העתק מדויק של side-note --- */
+  position: absolute;
+  top: 0; 
+  z-index: 100; /* שיהיה מעל הכל כשהוא מופיע */
+  right: -67.5%; 
+  width: 25%;
+  font-family: thebasics-regular;
+  font-size: 14px;
+  line-height: 128%;
+  color: #AA8152;
+  text-align: right;
+  text-indent: 0;
+  font-feature-settings: "case" 1, "ss01" 1, "liga" 1;
+  -webkit-font-feature-settings: "case" 1, "ss01" 1, "liga" 1;
+  font-variant-ligatures: contextual;
+  
+  /* --- התנהגות ייחודית: מוסתר כברירת מחדל --- */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  background-color: transparent; /* ללא רקע, כמו הערה רגילה */
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* 5. הצגת הרפרנס במעבר עכבר (Desktop) */
+.reference-name-wrapper:hover .reference-side-note {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* --- וריאציות של הערות שוליים --- */
+.side-note.l { right: -37.5%; text-indent: 0; }
+.side-note.bq { margin-right: 125px; }
+.side-note.bql { margin-right: 125px; right: -37.5%; text-indent: 0; }
+.side-note.w { width: 55%; }
+.reference-side-note.l { right: -37.5%; text-indent: 0; } 
+.reference-side-note.w { width: 55%; }
+/* --- מספרי הערות ועיצובים קטנים --- */
+.number-icon {
+  font-family: 'thebasics-regular', sans-serif;
+  font-style: normal;
+  vertical-align: middle;
+  line-height: 1;
+  color: #AA8152;
+  font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
+  -webkit-font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
+  font-variant-ligatures: contextual;
+  font-size: 22px;
+  display: inline;
+  position: static;
+  cursor: default;
+}
+
+.page-number { color: #AA8152; font-weight: 400; font-size: 18px; }
+.footnote-wrapper { position: static; }
+.mini-title {
+  margin-top: 50px;
+  font-family: thebasics-black; 
+}
+
+
+/* ======================================================== */
+/* חלק 2: אלמנטים של העמוד (Header, Main, Menu)           */
+/* ======================================================== */
+
+.white-space {
+  flex: 0 0 calc(20% - 20px); 
+  order: 0;
+  align-self: auto;
+  display: block;
+}
+
+.article-name {
+  flex: 0 0 30%;
+  order: 0;
+  display: block;
+  position: sticky;
+  top: 20px; 
+  align-self: flex-start;
+}
+
+.article-name-wrapper {
+  position: fixed;
+  width: 23%;
+  z-index: 100;
+  padding-top: 7px;
+}
+
+.article-name-wrapper-name { position: sticky; }
+
+/* Header & Menu */
+.header-wrapper-text {
+  position: fixed; 
+  top: 30px;
+  right: 23px;
+  z-index: 1000;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  padding-bottom: 10px; 
+}
+
+.arrow {
+    cursor: pointer;
+    display: inline-block;
+    font-family: thebasics-regular;
+    font-size: 21px;
+    color: #231F20;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 220px;
+    z-index: 1000;
+    text-align: right;
+    margin-top: -20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+/* תפריט מוקפא */
+.header-wrapper-text.force-open .dropdown-menu { display: block; }
+.header-wrapper-text.force-open .arrow { transform: rotate(180deg); }
+.arrow:hover ~ .dropdown-menu, .dropdown-menu:hover { display: block; }
+.arrow:hover, .header-wrapper-text:has(.dropdown-menu:hover) .arrow { transform: rotate(180deg); }
+
+.dropdown-menu ul { list-style: none; padding: 0; margin: 0; }
+.dropdown-menu ul li a {
+    display: block;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: thebasics-regular;
+    color: #231F20;
+}
+.dropdown-menu ul li a:hover { text-decoration: underline; }
+
+.menu-title {
+  font-family: thebasics-regular;
+  font-size: 15px;
+  text-indent: 0;
+  cursor: default;
+  padding-bottom: 5px;
+  color: #231F20;
+}
+
+.bottom-menu {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 23px;
+    z-index: 2000;
+    min-width: 220px;
+    text-align: right;
+    padding: 10px 0;
+}
+.bottom-menu.show { display: block; }
+.bottom-menu ul { list-style: none; padding: 0; margin: 0; }
+.bottom-menu ul li a {
+    display: block;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 128%;
+    font-family: thebasics-regular;
+    color: #231F20;
+    padding: 5px;
+}
+.bottom-menu ul li a:hover { text-decoration: underline; }
+
+/* Main Content Layout */
+.article-main-wrapper {
+  flex: 0 0 calc(50% - 20px);
+  display: block;
+  margin-left: 23px;
+}
+
+.main {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 23px; 
+  padding-top: 267px; 
+}
+
+.book-title { font-family: thebasics-regularitalic; color: #231F20; }
+.little-qoute { font-family: noam-text, serif; font-weight: 700; color: #231F20; }
+.bible-link {
+  font-family: thebasics-regular;
+  font-size: 16px;
+  border: 2px solid #AA8152;
+  border-radius: 13px;
+  padding: 2px 6px;
+  border-color: #AA8152;
+}
+
+.catarsis {
+  font-family: noam-text, serif;
+  font-size: 24px;
+  font-weight: 400;
+  cursor: pointer;
+  position: relative; 
+  display: inline-block; 
+  color: #231F20;
+}
+.catarsis::before {
+  content: attr(data-text); 
+  position: absolute;
+  top: 0; right: 0; 
+  font-weight: 700; 
+  opacity: 0; 
+  transition: opacity 1s ease;
+  white-space: nowrap;
+  pointer-events: none;
+  color: #231F20;
+}
+.catarsis:hover::before { opacity: 1; color: #231F20; }
+
+.gilayon { font-family: thebasics-black; font-size: 21px; color: #231F20; }
+
+.number {
+  font-family: thebasics-black;
+  font-size: 22px;
+  font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
+  -webkit-font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
+  font-variant-ligatures: contextual;
+  color: #231F20;
+}
+ .number:hover {
+  color:#AA8152;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+
+/* מצב פוקוס */
+body.focus-mode .side-note {
+  opacity: 0;
+  pointer-events: none;
+}
+.footnote-wrapper:hover .side-note {
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+/* המבורגר ומובייל התחלתי */
+.hamburger, .mobile-overlay { display: none; }
+
+
+/* ======================================================== */
+/* חלק 3: התאמות למובייל (עד 1200px)                      */
+/* ======================================================== */
+
+@media screen and (max-width: 1200px) {
+
+  /* --- 1. טיפול בהערות רגילות (Footnote Wrapper) --- */
+  .footnote-wrapper {
+    display: inline !important;
+    position: static !important;
+    float: none !important;
+    cursor: pointer;
+    user-select: none;
+  }
+  .number-icon { display: inline !important; position: static !important; }
+  .footnote-wrapper.active .number-icon { display: none !important; }
+  
+  .side-note, .side-note.l { display: none !important; }
+
+  .footnote-wrapper.active .side-note {
+    display: inline !important; 
+    position: static !important;
+    float: none !important;
+    right: auto !important; left: auto !important; top: auto !important; bottom: auto !important;
+    width: auto !important; height: auto !important;
+    margin: 0 !important; padding: 0 !important;
+    background: none !important; border: none !important; transform: none !important;
+    color: #AA8152;
+    font-size: 15px;
+    line-height: 128%;
+    border-left: 2px solid #AA8152 !important;
+    animation: blink-caret .75s step-end infinite;
+  }
+  
+  .side-note[style] { margin-top: 0 !important; top: 0 !important; left: 0 !important; position: static !important; }
+
+  /* --- 2. טיפול ברפרנסים (Reference Side Note) --- */
+  
+  /* איפוס כפתור */
+  .reference-name-wrapper {
+    display: inline !important;
+    position: static !important;
+    cursor: pointer;
+  }
+  
+  /* ביטול ההובר של המחשב (חשוב!) */
+  .reference-name-wrapper:hover .reference-side-note {
+    display: none !important;
+  }
+
+  /* מצב התחלתי במובייל - מוסתר לגמרי */
+  .reference-side-note {
+    display: none !important;
+    opacity: 0 !important;
+    position: static !important;
+  }
+
+  /* מצב פעיל (Active) במובייל */
+  
+  /* א. העלמת השם הקצר */
+  .reference-name-wrapper.active .reference-name {
+    display: none !important;
+  }
+
+  /* ב. הצגת הפירוט בתוך הטקסט (מכונת כתיבה) */
+  .reference-name-wrapper.active .reference-side-note {
+    display: inline !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    
+    position: static !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    
+    color: #AA8152;
+    font-size: 15px;
+    line-height: 128%;
+    
+    border-left: 2px solid #AA8152 !important;
+    animation: blink-caret .75s step-end infinite;
+  }
+
+  /* האנימציה המשותפת לכולם */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #AA8152; }
+  }
+}
+
+/* ======================================================== */
+/* חלק 4: התאמות לטלפונים קטנים (עד 768px)                */
+/* ======================================================== */
+
+@media screen and (max-width: 768px) {
+  
+  html, body {
+    overflow-x: hidden; width: 100%; max-width: 100vw; margin: 0; padding: 0;
+  }
+  * { box-sizing: border-box; }
+
+  .main {
+    display: flex; flex-direction: column; width: 100%;
+    padding: 0 20px; margin-top: 80px; position: relative; gap: 0 !important; 
+  }
+
+  .white-space { display: none; }
+  .article-main, .article-main-wrapper { display: contents; }
+
+  h1 {
+    order: 1 !important; margin-bottom: 15px; font-size: 28px;
+    line-height: 1.2; width: 100%; overflow-wrap: break-word; 
+  }
+
+  .article-name, .article-name-wrapper, .article-name-wrapper-name {
+    position: static !important; transform: none !important;
+    display: block !important; width: 100% !important; height: auto !important;
+    margin: 0 !important; padding: 0 !important;
+  }
+  .article-name { order: 2 !important; margin-bottom: 120px !important; }
+  .article-name-wrapper-name { font-size: 16px; line-height: 1.5; }
+
+  .article-main-wrapper > * { order: 3; width: 100%; }
+  
+  .article-main-wrapper p, .article-main-wrapper li, .article-main-wrapper blockquote,
+  .article-main-wrapper div {
+    margin-top: 0 !important; margin-bottom: 0 !important;
+    padding-top: 0 !important; padding-bottom: 0 !important; line-height: 150%;
+  }
+  
+  .article-main-wrapper > h1 { order: 1 !important; }
+
+  blockquote {
+    margin: 20px 0; padding: 0; width: 100%;
+    font-family: thebasics-regularitalic; font-size: 18px;
+  }
+
+  /* Mobile Header */
+  .header-wrapper-text {
+    position: fixed; top: 0; right: 0; width: 100%; height: auto;
+    background: white; padding: 15px 20px; z-index: 9999;
+    text-align: right; display: block; white-space: nowrap;
+  }
+  .header-wrapper-text .arrow, .header-wrapper-text .dropdown-menu { display: none !important; }
+
+  /* Hamburger */
+  .hamburger {
+    display: flex; flex-direction: column; justify-content: space-between;
+    width: 25px; height: 18px; cursor: pointer;
+    position: absolute; left: 20px; top: 50%; transform: translateY(-50%); z-index: 10000;
+  }
+  .hamburger span {
+    display: block; height: 2px; width: 100%; background-color: #231F20; border-radius: 2px;
+  }
+
+  /* Side Note Reset for Small Screens */
+  .side-note {
+    position: static !important; display: block;
+    margin: 15px 0; padding: 15px; background: #f4f4f4; width: 100%;
+  }
+
+  /* Mobile Menu Overlay */
+  .mobile-overlay {
+    display: none; position: fixed; top: 0; right: 0; left: 0; bottom: 0;
+    background-color: white; z-index: 100000; padding: 40px 20px;
+    overflow-y: auto; text-align: right;
+  }
+  .mobile-overlay.open { display: block; }
+  
+  .close-btn { position: absolute; top: 20px; left: 20px; font-size: 40px; cursor: pointer; line-height: 0.5; }
+  .mobile-title {
+    font-size: 20px; font-weight: 400; margin-bottom: 30px; margin-top: 20px;
+    font-family: 'thebasics-regular', sans-serif;
+  }
+  
+  .mobile-overlay ul { list-style: none; padding: 0; margin: 0; width: 100%; }
+  .mobile-overlay ul li a {
+    display: block; font-size: 20px; padding: 15px 0; border-bottom: none;
+    font-family: 'thebasics-regular', sans-serif; color: #231F20;
+    text-decoration: none; white-space: normal; word-wrap: break-word;
+  }
+
+  .mobile-level { display: none; width: 100%; }
+  .mobile-level.active { display: block; animation: fadeIn 0.3s; }
+  
+  .back-btn {
+    font-size: 20px; font-family: 'thebasics-regular', sans-serif;
+    margin-bottom: 20px; padding-bottom: 10px; color: #231F20; display: inline-block;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h2 {
+    margin-bottom: 5px;
+  }
+}
