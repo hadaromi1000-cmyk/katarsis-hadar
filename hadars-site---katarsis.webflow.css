@@ -390,6 +390,302 @@ body.focus-mode .side-note {
 .hamburger, .mobile-overlay { display: none; }
 
 
+
+
+
+/* ========================================= */
+/* הגדרות מיוחדות לעמוד "zikaron" */
+/* ========================================= */
+
+.hidden {
+  display: none !important;
+}
+
+/* הגדרות לכפתורים (השמות בצד) */
+.zikaron .article-name-wrapper-name {
+  cursor: pointer;
+  position: relative;
+  display: inline; /* שינוי חשוב: inline גורם לאלמנט לזרום עם הטקסט */
+  
+  /* הגדרת הקו התחתון */
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 2px; /* העובי של הקו */
+  text-underline-offset: 4px;     /* המרחק של הקו מהמילים (כדי שלא יידבק) */
+  
+  /* צבע הקו - בהתחלה שקוף */
+  text-decoration-color: transparent; 
+  
+  /* אנימציה חלקה לצבע */
+  transition: text-decoration-color 0.3s ease;
+  
+  /* ריווח קטן כדי שיראה טוב */
+  line-height: 1.6; 
+}
+
+/* כדי שהשורות לא יהיו צמודות מדי אחת לשנייה בגלל ה-inline */
+.zikaron .article-name-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* רווח בין שני המאמרים */
+  align-items: flex-start; /* מיישר אותם לימין */
+}
+
+
+/* המצב הפעיל (Active) + מצב Hover */
+.zikaron .article-name-wrapper-name.active,
+.zikaron .article-name-wrapper-name:hover {
+  text-decoration-color:#231F20; 
+}
+
+/* עיצוב למצב "כבוי" של כפתור התמונות */
+.zikaron #btn-images:not(.active) {
+  opacity: 1;
+}
+.zikaron #btn-images:hover {
+  opacity: 1;
+}
+
+/* --- עיצוב התמונות הסרוקות בעמוד הזיכרון --- */
+
+
+/* 1. מוודא שהאזור של התמונות תופס את אותו רוחב כמו הטקסט */
+.zikaron #content-images {
+  width: 100%;
+  display: block;
+}
+
+/* 2. עיצוב כל תמונה בנפרד */
+.zikaron .scan-img {
+  display: block;       /* גורם לכל תמונה לרדת שורה */
+  width: 100%;          /* רוחב מלא של הטור */
+  height: auto;         /* שומר על פרופורציות */
+  margin-bottom: 20px;  /* רווח בין תמונה לתמונה */
+  
+  /* אופציונלי: צל עדין כדי להפריד מהרקע */
+  box-shadow: 0 0px 0px rgba(0,0,0,0.05); 
+}
+
+/* 3. רווח גדול יותר בין מאמר למאמר */
+.zikaron .article-scan-item {
+  margin-bottom: 40px; /* מפריד בין קבוצות המאמרים */
+  padding-bottom: 40px;
+}
+
+/* מסיר את הקו מהמאמר האחרון */
+.zikaron .article-scan-item:last-child {
+  border-bottom: none;
+}
+
+/* --- תפריט תחתון למאמרים סרוקים --- */
+.zikaron .articles-nav-bottom {
+  margin-bottom: 600px;   /* המרחק מלמטה - כמו שביקשת */
+  /* אנימציית הופעה */
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* כשהוא מוסתר (דרך ה-JS) */
+.zikaron .articles-nav-bottom.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.zikaron .articles-nav-bottom ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.zikaron .articles-nav-bottom li {
+  margin-bottom: 8px; /* רווח בין השורות */
+}
+
+.zikaron .articles-nav-bottom a {
+  text-decoration: none;
+  font-family: 'noam-text';
+  font-size: 19px; /* גודל קריא */
+  color: #231F20;
+  transition: color 0.3s ease;
+  border-radius: 4px;
+}
+
+.zikaron .articles-nav-bottom {
+  margin-top: 270px;
+}
+
+.zikaron .articles-nav-bottom a:hover {
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 2px; /* העובי של הקו */
+  text-underline-offset: 4px;
+}
+
+/* תיקון לגלילה: כלוחצים על הקישור, שהכותרת לא תתחבא מתחת לתפריט העליון */
+html {
+  scroll-behavior: smooth; /* גלילה חלקה */
+}
+
+.article-scan-item {
+  scroll-margin-top: 267px; /* משאיר רווח מלמעלה כשקופצים למאמר */
+}
+
+/* ========================================= */
+/*  עמוד זיכרון לראשונים התאמות מובייל - תפריט בחירה בהתחלה       */
+/* ========================================= */
+
+@media screen and (max-width: 768px) {
+
+  /* 1. מבנה כללי: כותרת -> כפתורים -> תוכן */
+  .zikaron .main {
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+    min-height: 100vh;
+  }
+
+  /* 2. הכותרת הראשית - תמיד למעלה */
+  .zikaron .main-page-title {
+    display: block !important; /* לוודא שמופיע */
+    order: 1;
+    text-align: right;
+    margin-bottom: 40px;
+  }
+  
+  /* במחשב מסתירים את הכותרת הזו */
+  @media screen and (min-width: 769px) {
+     .zikaron .main-page-title { display: none !important; }
+  }
+
+  /* 3. אזור הכפתורים (השמות) */
+  .zikaron .article-name-wrapper {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important; /* רווח בין שני הכפתורים */
+    padding: 0 !important;
+    order: 2;
+    margin-bottom: 40px;
+  }
+ 
+  /* שם הספר בתוך הכפתור */
+  .zikaron .article-name-wrapper-name .book-title {
+    margin-top: 5px;
+  }
+
+  /* 5. אזור התוכן (שנפתח למטה) */
+  .zikaron .article-main {
+    order: 3;
+    width: 100%;
+  }
+  
+  /* הסתרת הכותרת הכפולה בתוך הטקסט */
+  .zikaron #content-text h1 { display: none; }
+
+  /* התפריט הקטן של המאמרים - יופיע מתחת לכפתור שלו */
+  .zikaron .articles-nav-bottom {
+    position: static !important;
+    margin-top: 10px;
+    width: 100%;
+    text-align: right;
+  }
+}
+
+/* ========================================= */
+/* התאמות מובייל - עמוד זיכרון לראשונים       */
+/* ========================================= */
+
+@media screen and (max-width: 768px) {
+
+  /* 1. הסתרה כברירת מחדל */
+  /* מסתיר את התוכן כשרק נכנסים */
+  .zikaron #content-text,
+  .zikaron #content-images {
+      display: none !important;
+  }
+
+  /* 2. התיקון הגדול: פקודת הפתיחה */
+  /* הוספנו את ה-ID גם כאן כדי שזה יהיה חזק יותר מהפקודה למעלה */
+  .zikaron #content-text.mobile-open,
+  .zikaron #content-images.mobile-open {
+      display: block !important;
+      margin-top: 20px;
+      animation: fadeIn 0.5s ease; /* אנימציה קטנה להופעה נעימה */
+  }
+
+  /* 3. מבנה העמוד */
+  .zikaron .main {
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+    min-height: 100vh;
+  }
+
+  /* כותרת ראשית */
+  .zikaron .main-page-title {
+    display: block !important;
+    order: 1;
+    text-align: right;
+    margin-bottom: 20px;
+    font-size: 32px; /* הגדלתי קצת שיהיה ברור */
+  }
+  
+  /* הסתרת כותרת במחשב */
+  @media screen and (min-width: 769px) {
+     .zikaron .main-page-title { display: none !important; }
+  }
+
+  /* 4. אזור הכפתורים */
+  .zikaron .article-name-wrapper {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 40px !important;
+    padding: 0 !important;
+    order: 2;
+    margin-bottom: 30px;
+  }
+
+
+
+  /* עיצוב הכפתורים */
+  .zikaron .article-name-wrapper-name {
+    display: block;
+    width: 100%;
+    font-family: thebasics-regular;
+    font-size: 20px;
+    line-height: 1.5;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+  }
+
+
+
+  /* 5. אזור התוכן */
+  .zikaron .article-main {
+    order: 3;
+    width: 100%;
+  }
+  
+  /* הסתרת הכותרת הכפולה בתוך הטקסט */
+  .zikaron #content-text h1 { display: none; }
+
+  /* הסתרת התפריט הצף הקטן במובייל */
+  .zikaron .articles-nav-bottom {
+    display: none !important;
+  }
+  
+  /* אנימציה להופעה */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
 /* ======================================================== */
 /* חלק 3: התאמות למובייל (עד 1200px)                      */
 /* ======================================================== */
@@ -489,14 +785,27 @@ body.focus-mode .side-note {
 
 @media screen and (max-width: 768px) {
   
+  /* 1. תיקון הקפיצה: הסרנו את max-width: 100vw */
   html, body {
-    overflow-x: hidden; width: 100%; max-width: 100vw; margin: 0; padding: 0;
+    overflow-x: hidden; 
+    width: 100%; 
+    /* max-width: 100vw; <--- זה מה שגרם לקפיצה, מחקנו אותו */
+    margin: 0; 
+    padding: 0;
+    position: relative; /* מוסיף יציבות */
   }
+  
   * { box-sizing: border-box; }
 
+  /* 2. תיקון הרווח: וידוא שה-Main לא בורח */
   .main {
-    display: flex; flex-direction: column; width: 100%;
-    padding: 0 20px; margin-top: 80px; position: relative; gap: 0 !important; 
+    display: flex; 
+    flex-direction: column; 
+    width: 100%;
+    padding: 0 20px; 
+    margin-top: 80px; /* הרווח מההדר */
+    position: relative; 
+    gap: 0 !important; 
   }
 
   .white-space { display: none; }
@@ -535,6 +844,9 @@ body.focus-mode .side-note {
     position: fixed; top: 0; right: 0; width: 100%; height: auto;
     background: white; padding: 15px 20px; z-index: 9999;
     text-align: right; display: block; white-space: nowrap;
+    
+    /* מונע קפיצות גובה */
+    min-height: 60px; 
   }
   .header-wrapper-text .arrow, .header-wrapper-text .dropdown-menu { display: none !important; }
 
@@ -548,23 +860,31 @@ body.focus-mode .side-note {
     display: block; height: 2px; width: 100%; background-color: #231F20; border-radius: 2px;
   }
 
-  /* Side Note Reset for Small Screens */
   .side-note {
     position: static !important; display: block;
     margin: 15px 0; padding: 15px; background: #f4f4f4; width: 100%;
   }
 
-  /* Mobile Menu Overlay */
+  /* 3. תיקון התפריט הנפתח */
   .mobile-overlay {
-    display: none; position: fixed; top: 0; right: 0; left: 0; bottom: 0;
-    background-color: white; z-index: 100000; padding: 40px 20px;
-    overflow-y: auto; text-align: right;
+    display: none; 
+    position: fixed; 
+    top: 0; right: 0; left: 0; bottom: 0;
+    background-color: white; 
+    z-index: 100000; 
+    
+    /* הגדלנו את הריפוד העליון כדי שהטקסט לא יעלה על ה-X */
+    padding: 80px 20px 40px 20px; 
+    
+    overflow-y: auto; 
+    text-align: right;
   }
   .mobile-overlay.open { display: block; }
   
   .close-btn { position: absolute; top: 20px; left: 20px; font-size: 40px; cursor: pointer; line-height: 0.5; }
+  
   .mobile-title {
-    font-size: 20px; font-weight: 400; margin-bottom: 30px; margin-top: 20px;
+    font-size: 20px; font-weight: 400; margin-bottom: 30px; margin-top: 0;
     font-family: 'thebasics-regular', sans-serif;
   }
   
