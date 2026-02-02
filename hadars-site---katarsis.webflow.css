@@ -553,7 +553,7 @@ html {
 /*  עמוד זיכרון לראשונים התאמות מובייל - תפריט בחירה בהתחלה       */
 /* ========================================= */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
 
   /* 1. מבנה כללי: כותרת -> כפתורים -> תוכן */
   .zikaron .main {
@@ -616,7 +616,7 @@ html {
 /* התאמות מובייל - עמוד זיכרון לראשונים       */
 /* ========================================= */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
 
   /* 1. הסתרה כברירת מחדל */
   /* מסתיר את התוכן כשרק נכנסים */
@@ -802,7 +802,7 @@ html {
 /* חלק 4: התאמות לטלפונים קטנים (עד 768px)                */
 /* ======================================================== */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   
   /* 1. תיקון הקפיצה: הסרנו את max-width: 100vw */
   html, body {
@@ -1082,7 +1082,7 @@ html {
 }
 
 /* התאמה למובייל (למקרה שמישהו יפתח בטעות בטלפון) */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .modal-content {
     width: 90%;
     padding: 30px;
