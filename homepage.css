@@ -654,57 +654,61 @@ header-wrapper-text {
         visibility: visible;
     }
 
+    /* === שינוי 1: האיקס עובר לשמאל === */
     .close-btn {
         position: absolute;
         top: 20px;
-        right: 20px;
+        left: 20px; /* שיניתי מ-right ל-left */
         font-size: 40px;
         cursor: pointer;
         color: #231F20;
     }
 
-    /* כותרת התפריט */
+    /* === שינוי 2: הכותרת מיושרת לימין === */
     .mobile-menu-title {
         font-family: 'thebasics-regular', sans-serif;
         font-size: 24px;
         color: #231F20;
         margin-top: 80px;
         margin-bottom: 20px;
-        text-align: center;
+        text-align: right; /* שיניתי ל-right */
+        padding-right: 20px; /* רווח מהקצה הימני */
         width: 100%;
+        box-sizing: border-box;
     }
 
    /* ======================================================== */
-    /* רשימת המספרים במובייל - סידור כמו פסקה צפופה ומדויקת */
+    /* רשימת המספרים במובייל */
     /* ======================================================== */
     
+    /* === שינוי 3: הטקסט מיושר לימין === */
     .issues-list-mobile {
-        display: block !important; /* מבטל את ה-Flex כדי שזה יהיה טקסט רגיל */
-        text-align: center; /* ממרכז את כל הבלוק לאמצע */
-        padding: 0 15px 40px 15px; /* ריווח מהצדדים שלא יידבק */
+        display: block !important;
+        text-align: right; /* שיניתי ל-right */
+        padding: 0 15px 40px 15px; 
         margin: 0;
         width: 100%;
         box-sizing: border-box;
     }
 
     .issues-list-mobile li {
-        display: inline-block; /* הופך כל מספר ל"מילה" בשורה */
-        margin: 2px 4px; /* רווח קבוע ושווה: 2px מלמעלה/למטה, 4px מהצדדים */
-         font-family: 'thebasics-bold', sans-serif;
+        display: inline-block;
+        margin: 2px 4px;
+        font-family: 'thebasics-bold', sans-serif;
         font-style: normal;
-        line-height: 1.2; /* גובה שורה שמונע התנגשות */
+        line-height: 1.2;
         font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
         -webkit-font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
         font-variant-ligatures: contextual;
     }
 
-    /* עיצוב המספרים - נשאר זהה למחשב */
+    /* עיצוב המספרים */
     .issues-list-mobile li a,
     .issues-list-mobile li .active-issue-number,
     .issues-list-mobile li span.disabled-issue {
         font-family: 'thebasics-bold', sans-serif;
         font-style: normal;
-        line-height: 1.2; /* גובה שורה שמונע התנגשות */
+        line-height: 1.2;
         font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
         -webkit-font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
         font-variant-ligatures: contextual;
