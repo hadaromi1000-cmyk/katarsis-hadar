@@ -96,7 +96,6 @@ h2 {
   font-size: 15.5px;
   display: inline;
   position: static;
-  cursor: pointer;
   border: 2px solid #AA8152;
   border-radius: 13px;
   padding: 2px 5px;
@@ -530,6 +529,26 @@ html {
   scroll-margin-top: 267px; /* משאיר רווח מלמעלה כשקופצים למאמר */
 }
 
+.english-text-last-p {
+  direction: ltr;      /* הופך את הכיוון */
+  text-align: left; 
+ font-size: 18px;
+ margin-bottom: 50px;   /* מיישר לשמאל (לפעמים dir לא מספיק אם יש הגדרות גורפות) */
+}
+
+.english-text-first-p {
+  direction: ltr;      /* הופך את הכיוון */
+  text-align: left; 
+ font-size: 18px;  
+  text-indent: 0;
+  margin-top: 50px; /* מיישר לשמאל (לפעמים dir לא מספיק אם יש הגדרות גורפות) */
+}
+
+.english-text {
+  direction: ltr;      /* הופך את הכיוון */
+  text-align: left; 
+ font-size: 18px;
+}
 /* ========================================= */
 /*  עמוד זיכרון לראשונים התאמות מובייל - תפריט בחירה בהתחלה       */
 /* ========================================= */
@@ -911,4 +930,242 @@ html {
   h2 {
     margin-bottom: 5px;
   }
+}
+
+
+
+
+/* ========================================= */
+/* עיצוב תפריט מקש ימני + חלונית תקציר      */
+/* ========================================= */
+
+/* --- 1. תפריט מקש ימני (התפריט הקטן) --- */
+.custom-context-menu {
+  display: none; /* מוסתר כברירת מחדל */
+  position: absolute;
+  z-index: 99999; /* חייב להיות מעל הכל */
+  width: 240px;
+  background-color: #ffffff;
+  
+  /* צל עדין ועיצוב נקי */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  
+  padding: 5px 0;
+  text-align: right;
+  direction: rtl; /* התפריט עצמו בעברית */
+}
+
+.custom-context-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-context-menu li {
+  padding: 10px 15px;
+  font-family: 'thebasics-regular', sans-serif;
+  cursor: pointer;
+  font-size: 15px;
+  color: #231F20;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* האייקון הקטן ליד הטקסט (Aa) */
+.custom-context-menu .icon {
+  font-weight: bold;
+  font-family: serif;
+  color: #AA8152;
+  width: 20px;
+  text-align: center;
+}
+
+.custom-context-menu li:hover {
+  background-color: #f9f9f9;
+  color: #AA8152;
+}
+
+/* קו מפריד בין אפשרויות (אם תוסיפי עוד בעתיד) */
+.custom-context-menu li:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+
+/* --- 2. חלונית התקציר (הפופ-אפ הגדול) --- */
+.translation-modal {
+  display: none; /* מוסתר */
+  position: fixed;
+  z-index: 100000; /* הכי גבוה שיש באתר */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* רקע כהה חצי שקוף */
+  background-color: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px); /* טשטוש רקע מודרני */
+  
+  justify-content: center;
+  align-items: center;
+}
+
+/* המחלקה שפותחת את החלונית (JS מוסיף אותה) */
+.translation-modal.open-flex {
+  display: flex !important;
+  animation: fadeInModal 0.3s ease-out;
+}
+
+/* הקופסה הלבנה שבמרכז */
+.modal-content {
+  background-color: #fff;
+  width: 80%;
+  max-width: 650px; /* רוחב מקסימלי נוח לקריאה */
+  max-height: 85vh; /* לא יותר גבוה מ-85% מהמסך */
+  overflow-y: auto; /* גלילה פנימית אם התקציר ארוך */
+  
+  padding: 50px;
+  border-radius: 4px;
+  border-top: 6px solid #AA8152; /* פס צבע למעלה */
+  box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+  
+  /* הגדרות טקסט לאנגלית */
+  direction: ltr; 
+  text-align: left;
+  position: relative;
+}
+
+/* כותרת התקציר בתוך החלונית */
+.modal-content h4 {
+  margin-top: 0;
+  font-family: 'thebasics-black', sans-serif;
+  font-size: 24px;
+  color: #231F20;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+/* טקסט התקציר עצמו */
+.modal-content p {
+  font-family: 'thebasics-regular', sans-serif; /* או פונט אנגלי אחר אם יש לך */
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* כפתור סגירה (X) */
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 32px;
+  font-weight: 300;
+  color: #ccc;
+  cursor: pointer;
+  line-height: 0.8;
+  transition: color 0.2s;
+}
+
+.close-modal:hover {
+  color: #AA8152;
+}
+
+/* אנימציית הופעה */
+@keyframes fadeInModal {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* התאמה למובייל (למקרה שמישהו יפתח בטעות בטלפון) */
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    padding: 30px;
+    max-height: 80vh;
+  }
+}
+
+
+
+/* ========================================= */
+/* זום מבני - 75% רוחב, צמוד לשמאל, עכבר מתוקן */
+/* ========================================= */
+
+@media screen and (min-width: 1100px) {
+
+  /* 1. אנימציה חלקה לכל החלקים */
+  .white-space,
+  .article-name,
+  .article-main-wrapper {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* 2. מצב רגיל: עכבר זכוכית מגדלת עם פלוס */
+  .zikaron .scan-img {
+    cursor: zoom-in;
+  }
+
+  /* ------------------------------------------------ */
+  /* --- מצב זום פעיל (zoom-mode) --- */
+  /* ------------------------------------------------ */
+
+  /* א. תיקון העכבר: הוספנו !important כדי להכריח אותו להשתנות */
+  body.zoom-mode .zikaron .scan-img {
+    cursor: zoom-out !important; 
+  }
+
+  /* ב. מעלימים את הרווח הלבן משמאל (כדי שהתמונות יתחילו מ-0) */
+  body.zoom-mode .white-space {
+    flex: 0 0 0 !important;
+    width: 0 !important;
+    opacity: 0;
+  }
+
+  /* ג. מעלימים את התפריט הימני לגמרי */
+  body.zoom-mode .article-name {
+    flex: 0 0 0 !important;
+    width: 0 !important;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* ד. עיצוב האזור של התמונות: 75% וצמוד לשמאל */
+  body.zoom-mode .article-main-wrapper {
+    /* גודל: 75% */
+    flex: 0 0 75% !important; 
+    max-width: 75% !important;
+    
+    /* הצמדה לשמאל: */
+    margin-left: 0 !important;  /* מבטל רווחים משמאל */
+    margin-right: auto !important; /* דוחף את כל השטח הריק לצד ימין */
+  }
+  
+  /* ה. התמונה עצמה תופסת את כל רוחב העמודה החדשה */
+  body.zoom-mode .scan-img {
+    width: 100%;
+    height: auto;
+    cursor: zoom-out !important;
+  }
+}
+
+/* ========================================= */
+/* סימון קישור פעיל - עיצוב נקי             */
+/* ========================================= */
+
+
+/* המחלקה שנוספת אוטומטית בגלילה */
+.zikaron .articles-nav-bottom a.active-link {  
+    text-decoration: underline !important; /* קו תחתון */
+    font-weight: normal !important; 
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
 }

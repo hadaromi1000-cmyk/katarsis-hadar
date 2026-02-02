@@ -84,6 +84,20 @@
             <p>
             חוששני שגבי לא היה מרוצה מהשערה זו בדבר הקשר בין אהבתו לאתונה ואמונתו בדמוקרטיה לבין כתיבתו המחקרית, שהרי לא היה דבר שקומם אותו יותר מאשר ההיתר הפוסט-מודרני, בפרשנותו הנפוצה, להניח לסדר יום אידאולוגי לחלחל – ולעתים אף לפלוש בגלוי – לתוך ממצאיו של מחקר אקדמי. טוהר המתודולוגיה היה בשבילו עניין שבקדושה. תזה מחקרית לכאורה, הפוטרת את עצמה מהצורך בביסוס קפדני מתוך יומרה לשקף ולשרת דבר-מה שראוי להאמין בו, עוררה אצלו בוז גמור. באהבתו הגדולה לאתונה, ובבקיאותו המופלאה בתולדותיה, במורשתה הספרותית ובתרבותה החומרית, יכולתי להיווכח גם בעת סיורים, יחד אתו ובהדרכתו, בהם זכיתי להשתתף. בסיורים אלה, כמו בהזדמנויות רבות אחרות, זכיתי להכיר אותו כאדם שהיה מופת של ידידות וטוב לב, כשם שהיה חוקר היסטוריה משובח.
             </p>
+
+            <p class="english-text-first-p">
+              Professor Gabriel (Gabi) Herman who passed away on November 18, 2024, was a social historian of ancient Greece. Athenian democracy and its societal values have been at the center of his research. I am writing this as someone who was his student and later his colleague in the Department of History at the Hebrew University, and had the privilege of having been personally connected to him. Gabi Herman was born in 1947 in Transylvania, Romania, and immigrated to Israel with his parents as a teenager. He wrote his PhD dissertation on "Ritualized Friendship and the Greek City" under the supervision of Moses Finley and received his PhD in 1985. Gabi Herman’s social history was socio-cultural, one that studies the values and norms of behavior that prevail in a society, the conditions for their growth, and their social impact. 
+            </p>
+            <p class="english-text">
+              His first book, Ritualized Friendship and the Greek City, based on his PhD dissertation, was published by the Cambridge University Press in 1987. It deals with the phenomenon of "xenia" – ξενία – in the Greek world: a strong personal bond that was ceremonially forged between men from different political communities, which included the exchange of gifts, mutual help in times of need, and mutual hospitality  His second book, Morality and Behaviour in Democratic Athens: A Social History (1987, Cambridge University Press), examines the impressive ability of the Athenian polis in the age of developed democracy to impose its collective civic ethos on all citizens, including the upper classes. The book taps a rich source that had not been used in this way until then: the forensic speeches of Attic Orators, a large corpus of speeches delivered in Athenian courts. It demonstrates a recurring pattern: litigants in Athenian popular courts attributed to themselves an extraordinary degree of restraint and a willingness to endure multiple insults and injuries without resorting to force, or even filing a lawsuit. It was only as a last resort, after repeated abuses, that they finally decided to prosecute the offender. Such claims were made repeatedly, clearly in the hope wining the jurors’ the sympathy; they must have reflected, whatever the truth of the matter in each case, a prevailing notion of proper social behavior. 
+            </p>
+            <p class="english-text">
+              The Athenian society that emerges from this study is very different from descriptions that attribute to it a "Mediterranean code of honor," with its aggressive masculinity and unbridled competition. I dare say that Gabi Herman's general verdict on the Athenian democracy also reflects his great love for Athens, and his belief in democracy, not just Athenian. He dealt extensively with modern theories on the "wisdom of the crowd” that offer a rational basis, backed by the findings of behavioral studies, for relying, in important decisions, on the collective wisdom of “the many”. He was evidently happy to find a basis in empirical research for his belief in democracy - without deluding himself that the logic of the wisdom of the crowd applies in all cases. But in essence, this was for him a matter of faith - part of his deep belief in the Human’s intrinsic value and intellectual and moral potential, perhaps in the spirit of Protagoras. 
+            </p>
+            <p class="english-text-last-p">
+              I am afraid that he would not have been happy with this hypothesis, that there was a connection between his love for Athens and his belief in democracy and his research. Nothing infuriated him more than the post-modern (in the common, and certainly his, understanding) readiness, and indeed eagerness, to allow an ideological agenda to contaminate (as he would define it) the findings of academic research. A scholarly thesis that exempted itself from the need for a rigorous substantiation by claiming to reflect some higher truth and serve some noble goal aroused in him utter contempt. His love for Athens, his remarkable mastery of its history, its literary heritage and its material culture - all these I could observe personally during Athenian tours, together with him and under his guidance, in which I had the privilege of participating. During these tours, as on many other occasions, I had the privilege of knowing him as a man who was as exemplary in friendship and kindness as he was an admirable scholar and a fine first-class historian.
+            </p>
+
         </div>
         
       <div id="content-images" class="hidden">
@@ -104,7 +118,7 @@
         </div>
 
         <div id="article2" class="article-scan-item">
-            <img src="images/2.1.png" alt="עמוד 1" class="scan-img">
+
             <img src="images/2.2.png" alt="עמוד 2" class="scan-img">
             <img src="images/2.3.png" alt="עמוד 3" class="scan-img">
             <img src="images/2.4.png" alt="עמוד 4" class="scan-img">
@@ -112,7 +126,6 @@
         </div>
 
        <div id="article3" class="article-scan-item">
-            <img src="images/3.1.png" alt="עמוד 1" class="scan-img">
             <img src="images/3.2.png" alt="עמוד 2" class="scan-img">
             <img src="images/3.3.png" alt="עמוד 3" class="scan-img">
             <img src="images/3.4.png" alt="עמוד 4" class="scan-img">
@@ -566,6 +579,90 @@ function backToMainMenu() {
           });
       }
   });
+
+  // --- לוגיקה לזום מבני (הרחבת Flex) ---
+  const images = document.querySelectorAll('.zikaron .scan-img');
+
+  images.forEach(img => {
+      img.addEventListener('click', function() {
+          // פעיל רק במחשב
+          if (window.innerWidth > 1200) {
+              
+              // בודקים אם אנחנו כבר במצב זום
+              const isZoomed = document.body.classList.contains('zoom-mode');
+
+              if (isZoomed) {
+                  // אם כבר בזום -> לחיצה מחזירה למצב רגיל
+                  document.body.classList.remove('zoom-mode');
+              } else {
+                  // אם לא בזום -> לחיצה מפעילה מצב זום
+                  document.body.classList.add('zoom-mode');
+                  
+                  // אופציונלי ומומלץ: גלילה חלקה כדי שהתמונה שנלחצה תהיה מול העיניים
+                  // (כי שינוי הגודל עלול להזיז אותה קצת)
+                  setTimeout(() => {
+                      this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }, 300); // מחכים קצת שהאנימציה תתחיל
+              }
+          }
+      });
+  });
+
+
+  // --- לוגיקה משולבת: Scroll Spy + לחיצה מיידית ---
+
+  let isManualScroll = false; // דגל: האם כרגע לחצו על כפתור?
+  let scrollTimeout;
+
+  // 1. טיפול בלחיצה על הקישורים (סימון מיידי)
+  const navLinks = document.querySelectorAll('.articles-nav-bottom a');
+  
+  navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+          // א. מרימים את הדגל: "עכשיו לחצו, אל תחשב גלילה"
+          isManualScroll = true;
+          
+          // ב. מנקים את הסימון מכולם ומסמנים את הנלחץ מיד
+          navLinks.forEach(l => l.classList.remove('active-link'));
+          this.classList.add('active-link');
+
+          // ג. איפוס הדגל אחרי שנייה (הזמן שלוקח לגלילה להסתיים)
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+              isManualScroll = false;
+          }, 1000); 
+      });
+  });
+
+  // 2. טיפול בגלילה (Scroll Spy) - רץ רק אם לא לחצו הרגע
+  window.addEventListener('scroll', function() {
+      
+      // אם כרגע לחצו על כפתור - אנחנו לא רוצים שהגלילה תשנה את הסימון
+      if (isManualScroll) return;
+
+      const bottomNav = document.getElementById('articles-bottom-nav');
+      if (bottomNav.classList.contains('hidden')) return;
+
+      const sections = document.querySelectorAll('.article-scan-item');
+      let currentId = '';
+
+      sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          // רגישות של 300 פיקסלים
+          if (window.scrollY >= (sectionTop - 300)) {
+              currentId = section.getAttribute('id');
+          }
+      });
+
+      // עדכון הקישורים רק אם הגלילה היא ידנית (לא מלחיצה)
+      navLinks.forEach(link => {
+          link.classList.remove('active-link');
+          if (link.getAttribute('href').includes(currentId)) {
+              link.classList.add('active-link');
+          }
+      });
+  });
+  
 </script>
 </body>
 </html>

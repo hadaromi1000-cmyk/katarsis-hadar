@@ -532,7 +532,7 @@
          . בשילוב עם ממצאיהם של שגיב 
          <span class="reference-name-wrapper">
             <span class="reference-name">2014</span>
-            <span class="reference-side-note l" style="top: 100px;"> 
+            <span class="reference-side-note l" style="top: 20px;"> 
              שגיב, ט' (2014). חצי חצי: על ישראלים ממוצא עדתי מעורב. הקיבוץ המאוחד.
 
             </span>
@@ -550,7 +550,7 @@
         כחלק מהביקורת על האופן שבו המחברים בחרו להעמיד את הנתונים, יש להדגיש גם את השונות הפנימית הרחבה באוכלוסייה המזרחית. קיימת שונות רבה במראה החיצוני הגופני (פנוטיפ) באופן שמשפיע מאוד על גיבוש הזהות האישית והחברתית 
         <span class="reference-name-wrapper">
             <span class="reference-name">שגיב, 2014; תירוש 2022</span>
-            <span class="reference-side-note" style="top: 30px;"> 
+            <span class="reference-side-note" style="top: 200px;"> 
               שגיב, ט' (2014). חצי חצי: על ישראלים ממוצא עדתי מעורב. הקיבוץ המאוחד.
               <br>
               תירוש, י' (2022). "לא רואים עליך: מלכוד העמימות של זהות מזרחית בפסיקת הפליה במועדונים". משפט וממשל, כ"ג. עמ'  421-465.
@@ -769,7 +769,13 @@
         אם מאמצים את נקודת המבט הזאת, נקודת מבט שמרנית-בריטית המעריכה שינוי הדרגתי ואורגני, אפשר לראות במכללות ערוץ חשוב לניעות חברתית, כזה המאפשר למזרחים להתקדם בלא לוותר על זהותם התרבותית המבכרת משפחתיות. קריאה שמרנית זו אינה מבטלת את הצורך בניתוח תאורטי עמוק ורב-ממדי אלא משלימה אותו: היא מזכירה כי לצד ביקורת על מנגנוני הדרה והגמוניה, חשוב גם לזהות את הערוצים ההדרגתיים והמעשיים שבאמצעותם מתעצבת ניעות חברתית ומשוקמות זהויות קולקטיביות חבוטות. נקודת מבט זו מאפשרת להבין כיצד תהליכים של ניעות והשכלה יכולים להניב הישגים חלקיים אך משמעותיים ומספקת בסיס לדיון מסכם על היקף ההצלחה, מגבלותיה והמתח הפנימי של "המעמד הבינוני המזרחי" בתוך שמירה על מורכבותו, שבריריותו והאתגרים הנכונים לו.
         </p>
 
-
+        <p class="english-text-first-p">
+         This article critically examines Uri Cohen and Nissim Leon's work on the Mizrahi middle class in Israel, highlighting both its conceptual contributions and analytical limitations. The book revisits the notion of a distinct Mizrahi middle class, acknowledging real upward mobility while revealing persistent structural, cultural, and symbolic constraints. However, the analysis is limited by insufficient ethnographic depth, minimal attention to internal heterogeneity, and empirical tensions that challenge straightforward claims about mobility. These constraints, in turn, temper the interpretive power of the authors’ creative terminology.
+        The discussion also considers educational institutions as "liminal" spaces that offer the appearance of upward mobility while maintaining social constraints, as well as the Mizrahi Masorti movement, showing how symbolic presence can coexist with political and educational marginality. The authors’ innovative terms, including “deceptive mobility paths” and universities as “centers of knowledge,” help illuminate the complexities of Mizrahi identity and inequality, but their explanatory reach is circumscribed by the uneven empirical base.
+        </p>
+        <p class="english-text-last-p">
+          Overall, the article situates the Mizrahi middle class within broader socio-historical and comparative frameworks, emphasizing the interplay of structural inequality, cultural practices, and agency, and highlighting the partial and uneven nature of social mobility in the context of enduring hierarchies and historical legacies.
+        </p>
 
 
 
@@ -841,7 +847,6 @@
         <li><a href="zikaron.html">גבריאל הרמן</a></li>
     </ul>
 </div>
-
 
   <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1119,5 +1124,66 @@ function backToMainMenu() {
   });
 
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // אלמנטים
+    const contextMenu = document.getElementById('custom-context-menu');
+    const showTransBtn = document.getElementById('btn-show-translation');
+    const modal = document.getElementById('translation-modal');
+    const modalText = document.getElementById('translation-text');
+    const abstractContent = document.getElementById('article-abstract-content');
+    const closeModal = document.querySelector('.close-modal');
+
+    // --- לוגיקה: לחיצה ימנית ---
+    document.addEventListener('contextmenu', function(e) {
+        // בודק אם הלחיצה הייתה בתוך אזור הטקסט (או בכל מקום ב-main)
+        // אם זה לא עובד לך, נסי לשנות את '#content-text' ל- '.main'
+        const clickedInsideMain = e.target.closest('.main'); 
+
+        if (clickedInsideMain) {
+            e.preventDefault(); // מבטל את התפריט הרגיל של הדפדפן!
+            
+            // הצגת התפריט שלנו
+            contextMenu.style.display = 'block';
+            contextMenu.style.top = e.pageY + 'px';
+            contextMenu.style.left = e.pageX + 'px';
+        } else {
+            // אם לחצו מחוץ לאזור הראשי - סגור את התפריט
+            contextMenu.style.display = 'none';
+        }
+    });
+
+    // --- לחיצה על "הצג תקציר" ---
+    showTransBtn.onclick = function() {
+        if (abstractContent) {
+            modalText.innerHTML = abstractContent.innerHTML; // מעתיק את התקציר
+            modal.classList.add('open-flex'); // פותח חלונית
+            contextMenu.style.display = 'none'; // סוגר תפריט
+        } else {
+            alert("שגיאה: לא נמצא תוכן לתקציר (id='article-abstract-content')");
+        }
+    };
+
+    // --- סגירת החלונית ---
+    closeModal.onclick = function() {
+        modal.classList.remove('open-flex');
+    };
+
+    // --- סגירה בלחיצה בחוץ (או לחיצה רגילה) ---
+    window.addEventListener('click', function(e) {
+        // סגירת פופ-אפ
+        if (e.target == modal) {
+            modal.classList.remove('open-flex');
+        }
+        // סגירת תפריט ימני
+        if (contextMenu) {
+            contextMenu.style.display = 'none';
+        }
+    });
+});
+</script>
+
 </body>
 </html>
