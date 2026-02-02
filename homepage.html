@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.typekit.net/njj3xnm.css">
+  <link rel="stylesheet" href="homepage.css">
+  <title>katarsis</title>
+</head>
+
+<body>
+
+<header>
+  <div class="header-wrapper-text" style="position: relative;">
+    
+    <div class="hamburger" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <a href="homepage.html" style="text-decoration: none;">
+      <span class="catarsis" data-text="קתרסיס">קתרסיס</span>
+    </a> 
+    
+    <span class="gilayon">גליון מס׳</span>
+    
+    <span class="arrow" onclick="toggleMenu(event)">&#x2193;</span>
+    
+    <div id="desktop-menu" class="issues-dropdown">
+        <ul id="desktop-issues-list" class="issues-list"></ul>
+    </div>
+    
+  </div>
+</header>
+
+  <div class="main">
+    <div class="white-space"></div>
+    <div class="article-name"><div class="article-name-wrapper"></div></div>
+    
+    <div class="article-main">
+      <div class="article-main-wrapper">
+        <h1>קתרסיס</h1>
+        <p class="first-paragraph">
+          <span class="description-line">כתב עת למאמרי ביקורת</span><br>
+          כתב עת העוסק בביקורת של פרסומים אקדמיים ועיוניים בעברית בתחומי מדעי הרוח והחברה. מטרת כתב העת להעלות את הרמה האקדמית בישראל באמצעות ביקורת החושפת ליקויים במתודולוגיה האקדמית בפרסומים רבים וגם משבחת פרסומים בעלי רמה גבוהה.
+        </p>
+        <p>
+        העורכים: עמוס אדלהייט, יוחנן גלוקר, אלון הראל, יוסי ליברזון, אבשלום לניאדו, דורון מנדלס, יהודה פרידלנדר.<br>
+        מועצת המערכת: רחל בירנבאום, עודד היילברונר, איל זמיר, אסא כשר, נועם מזרחי, עמנואל סיון, אלישע קימרון, חנה רוזן, אלכסנדר רופא, משה שוקד, מאיר שטרנברג, ראובן שיינדלין, דניאל שפרבר.
+        </p>
+      </div>
+    </div>
+  </div>
+
+<div id="mobileOverlay" class="mobile-overlay">
+    <div class="close-btn" onclick="toggleMobileNav()">&times;</div>
+    
+    <div id="mobileMainLevel" class="mobile-level active">
+        <div class="mobile-menu-title">קתרסיס גיליון מס׳</div>
+        
+        <ul id="mobile-issues-list" class="issues-list-mobile"></ul>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  function generateIssuesList() {
+      const mobileList = document.getElementById('mobile-issues-list');
+      const desktopList = document.getElementById('desktop-issues-list');
+      
+      // משתנים נפרדים למחשב ולמובייל
+      let desktopHTML = '';
+      let mobileHTML = '';
+      
+      let counter = 0; 
+
+      for (let i = 43; i >= 1; i--) {
+          let listItem = '';
+          
+          if (i === 43) {
+              listItem = `<li><a href="pagegilayon43.html"><span class="active-issue-number">${i}</span></a></li>`;
+          } else {
+              listItem = `<li><span class="disabled-issue">${i}</span></li>`;
+          }
+          
+          // 1. הוספה למובייל (רשימה נקייה ורציפה)
+          mobileHTML += listItem;
+
+          // 2. הוספה למחשב (עם ירידת שורה כל 5 מספרים)
+          desktopHTML += listItem;
+          counter++;
+          if (counter === 5) {
+              desktopHTML += '<br>'; 
+              counter = 0;
+          }
+      }
+
+      if(mobileList) mobileList.innerHTML = mobileHTML;
+      if(desktopList) desktopList.innerHTML = desktopHTML;
+  }
+
+  generateIssuesList();
+
+  // לוגיקה לפתיחה/סגירה במחשב
+  window.toggleMenu = function(event) {
+      event.stopPropagation();
+      const menu = document.getElementById('desktop-menu');
+      if (menu.classList.contains('show')) {
+          menu.classList.remove('show');
+      } else {
+          menu.classList.add('show');
+      }
+  }
+
+  window.addEventListener('click', function(e) {
+      const menu = document.getElementById('desktop-menu');
+      if (!e.target.closest('.header-wrapper-text')) {
+          menu.classList.remove('show');
+      }
+  });
+
+  // לוגיקה למובייל
+  window.toggleMobileNav = function() {
+      var overlay = document.getElementById('mobileOverlay');
+      if (!overlay.classList.contains('open')) {
+          overlay.classList.add('open');
+          document.body.style.overflow = 'hidden';
+      } else {
+          overlay.classList.remove('open');
+          document.body.style.overflow = '';
+      }
+  }
+});
+</script>
+
+</body>
+</html>
