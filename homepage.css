@@ -708,7 +708,7 @@ header-wrapper-text {
         font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
         -webkit-font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
         font-variant-ligatures: contextual;
-        font-size: 32px;
+        font-size: 18px;
     }
 
     .issues-list-mobile li a,
