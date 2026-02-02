@@ -715,9 +715,15 @@ header-wrapper-text {
     .issues-list-mobile li .active-issue-number {
         color:#231F20;
         text-decoration: none;
+        font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
+        -webkit-font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
+        font-variant-ligatures: contextual;
     }
 
     .issues-list-mobile li span.disabled-issue {
         color:#231F20;
+        font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
+        -webkit-font-feature-settings: "case" 1, "ss08" 1, "liga" 1;
+        font-variant-ligatures: contextual;
     }
 }
